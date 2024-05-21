@@ -21,17 +21,74 @@ export default function SignUp() {
     password: ''
   })
 
+  const [errors, setErrors] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  })
+
+  const validateField = (name: string, value: string) => {
+    let error = ''
+
+    switch (name) {
+      case 'firstName':
+        if (!value) error = 'First name is required'
+        break
+      case 'lastName':
+        if (!value) error = 'Last name is required'
+        break
+      case 'email':
+        if (!value) {
+          error = 'Email is required'
+        } else if (!/\S+@\S+\.\S+/.test(value)) {
+          error = 'Email is invalid'
+        }
+        break
+      case 'password':
+        if (!value) {
+          error = 'Password is required'
+        } else if (value.length < 8) {
+          error = 'Password must be at least 8 characters'
+        } else if (!/[A-Z]/.test(value)) {
+          error = 'Password must contain at least one uppercase letter'
+        } else if (!/[0-9]/.test(value)) {
+          error = 'Password must contain at least one number'
+        } else if (!/[!@#$%^&*]/.test(value)) {
+          error = 'Password must contain at least one special character'
+        }
+        break
+      default:
+        break
+    }
+
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }))
+  }
+
   const changeUpForm = (event: { target: { name: string; value: string } }) => {
-    setUpForm({ ...upForm, [event.target.name]: event.target.value })
+    const { name, value } = event.target
+    setUpForm({ ...upForm, [name]: value })
+    validateField(name, value)
+  }
+
+  const isFormValid = () => {
+    return (
+      Object.values(upForm).every((value) => value !== '') &&
+      Object.values(errors).every((error) => error === '')
+    )
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    try {
-      const data = await request('/api/auth/register', 'POST', { ...upForm })
-      console.log(data)
-    } catch (err) {
-      console.error('An error occurred:', err)
+    if (isFormValid()) {
+      try {
+        const data = await request('/api/auth/register', 'POST', { ...upForm })
+        console.log(data)
+      } catch (err) {
+        console.error('An error occurred:', err)
+      }
+    } else {
+      console.error('Form is not valid')
     }
   }
 
@@ -60,7 +117,9 @@ export default function SignUp() {
               <TextField
                 autoComplete='given-name'
                 autoFocus
+                error={Boolean(errors.firstName)}
                 fullWidth
+                helperText={errors.firstName}
                 id='firstName'
                 label='First Name'
                 name='firstName'
@@ -71,7 +130,9 @@ export default function SignUp() {
             <Grid item sm={6} xs={12}>
               <TextField
                 autoComplete='family-name'
+                error={Boolean(errors.lastName)}
                 fullWidth
+                helperText={errors.lastName}
                 id='lastName'
                 label='Last Name'
                 name='lastName'
@@ -82,7 +143,9 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 autoComplete='email'
+                error={Boolean(errors.email)}
                 fullWidth
+                helperText={errors.email}
                 id='email'
                 label='Email Address'
                 name='email'
@@ -93,7 +156,9 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 autoComplete='new-password'
+                error={Boolean(errors.password)}
                 fullWidth
+                helperText={errors.password}
                 id='password'
                 label='Password'
                 name='password'
@@ -104,7 +169,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            disabled={loading}
+            disabled={loading || !isFormValid()}
             fullWidth
             sx={signUpStyles.submitButton}
             type='submit'
