@@ -86,20 +86,8 @@ module.exports = {
             message:
               'Use typed hooks `useAppDispatch` and `useAppSelector` instead.'
           }
-        ]
+        ],
       }
     },
-    {
-      files: ['**/tests/**/*.*.js', '**/tests/**/*.js'],
-      env: {
-        jest: true
-      }
-    },
-    {
-      files: ['**/*.stories.*'],
-      rules: {
-        'import/no-anonymous-default-export': 'off'
-      }
-    }
   ]
 }
