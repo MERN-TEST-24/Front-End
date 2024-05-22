@@ -9,7 +9,8 @@ interface RequestHeaders {
 }
 
 interface UserResponse {
-  id: number
+  userId: string
+  token: string
   name: string
   email: string
 }

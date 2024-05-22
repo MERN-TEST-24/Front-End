@@ -2,17 +2,18 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
+
 import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { useHTTP } from '../../../hooks/http.hook'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useContext } from 'react'
 import { signInStyles } from './signIn.styles'
+import { AuthContext } from '../../../context/AuthContext'
 
 export default function SignIn() {
+  const auth = useContext(AuthContext)
   const { loading, request } = useHTTP()
 
   const [inForm, setInForm] = useState({
@@ -74,7 +75,7 @@ export default function SignIn() {
     if (isFormValid()) {
       try {
         const data = await request('/api/auth/login', 'POST', { ...inForm })
-        console.log(data)
+        auth.login(data.token, data.userId)
       } catch (err) {
         console.error('An error occurred:', err)
       }
@@ -128,10 +129,6 @@ export default function SignIn() {
             onChange={changeInForm}
             required
             type='password'
-          />
-          <FormControlLabel
-            control={<Checkbox color='primary' value='remember' />}
-            label='Remember me'
           />
           <Button
             disabled={loading || !isFormValid()}
