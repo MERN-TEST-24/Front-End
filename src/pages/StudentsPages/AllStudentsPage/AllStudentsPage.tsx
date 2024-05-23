@@ -12,6 +12,7 @@ const AllStudentsPage = () => {
       <FetchDataTable
         apiEndpoint='/api/student'
         columns={columns}
+        navigateParams='/Students/one-student/'
         tableLabel='Students table'
       />
     </PageWrapper>

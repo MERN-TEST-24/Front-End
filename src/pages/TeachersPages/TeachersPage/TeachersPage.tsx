@@ -14,10 +14,6 @@ const TeachersPage: React.FC = () => {
     navigate('/Teachers/add-teacher')
   }
 
-  const handleTeacherClick = () => {
-    navigate('/Teachers/one-teacher/123')
-  }
-
   const buttons = [
     { label: 'All Teachers', handleClick: handleAllTeachersClick },
     { label: 'Add Teacher', handleClick: handleAddTeacherClick }
@@ -30,7 +26,6 @@ const TeachersPage: React.FC = () => {
         showIcon={false}
         title='Teachers functionality'
       />
-      <button onClick={handleTeacherClick}>Перейти до викладача 123</button>
     </PageWrapper>
   )
 }

@@ -14,10 +14,6 @@ const SubjectsPage: React.FC = () => {
     navigate('/Subjects/add-subject')
   }
 
-  const handleSubjectClick = () => {
-    navigate('/Subjects/one-subject/123')
-  }
-
   const buttons = [
     { label: 'All Subjects', handleClick: handleAllSubjectsClick },
     { label: 'Add Subjects', handleClick: handleAddSubjectClick }
@@ -30,7 +26,6 @@ const SubjectsPage: React.FC = () => {
         showIcon={false}
         title='Subjects functionality'
       />
-      <button onClick={handleSubjectClick}>Перейти до предмету 123</button>
     </PageWrapper>
   )
 }

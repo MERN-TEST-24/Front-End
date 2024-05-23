@@ -14,10 +14,6 @@ const DetailPage: React.FC = () => {
     navigate('/Grades/add-grade')
   }
 
-  const handleGradeClick = () => {
-    navigate('/Grades/one-grade/123')
-  }
-
   const buttons = [
     { label: 'All Grades', handleClick: handleAllGradesClick },
     { label: 'Add Grade', handleClick: handleAddGradeClick }
@@ -30,7 +26,6 @@ const DetailPage: React.FC = () => {
         showIcon={false}
         title='Grades functionality'
       />
-      <button onClick={handleGradeClick}>Перейти до оцінки 123</button>
     </PageWrapper>
   )
 }

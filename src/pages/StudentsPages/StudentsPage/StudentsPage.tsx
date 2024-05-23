@@ -14,10 +14,6 @@ const StudentsPage: React.FC = () => {
     navigate('/Students/add-student')
   }
 
-  const handleStudentClick = () => {
-    navigate('/Students/one-student/123')
-  }
-
   const buttons = [
     { label: 'All Students', handleClick: handleAllStudentsClick },
     { label: 'Add Student', handleClick: handleAddStudentClick }
@@ -30,7 +26,6 @@ const StudentsPage: React.FC = () => {
         showIcon={false}
         title='Students functionality'
       />
-      <button onClick={handleStudentClick}>Перейти до студента 123</button>
     </PageWrapper>
   )
 }

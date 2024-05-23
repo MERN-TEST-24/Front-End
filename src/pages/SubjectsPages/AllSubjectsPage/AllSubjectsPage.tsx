@@ -1,10 +1,19 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
+import FetchDataTable from '../../../components/FetchDataTable/FetchDataTable'
 
 const AllSubjectsPage = () => {
+  const columns = [
+    { field: '_id', headerName: 'id' },
+    { field: 'subject_name', headerName: 'Subjectname' }
+  ]
   return (
     <PageWrapper>
-      <Box>AllSubjectsPage</Box>
+      <FetchDataTable
+        apiEndpoint='/api/subject'
+        columns={columns}
+        navigateParams='/Subjects/one-subject/'
+        tableLabel='Subjects table'
+      />
     </PageWrapper>
   )
 }
