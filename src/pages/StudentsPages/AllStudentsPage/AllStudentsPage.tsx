@@ -1,10 +1,19 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
+import FetchDataTable from '../../../components/FetchDataTable/FetchDataTable'
 
 const AllStudentsPage = () => {
+  const columns = [
+    { field: '_id', headerName: 'id' },
+    { field: 'lastName', headerName: 'Last Name' },
+    { field: 'group_name', headerName: 'Group Name' }
+  ]
   return (
     <PageWrapper>
-      <Box>AllStudentsPage</Box>
+      <FetchDataTable
+        apiEndpoint='/api/student'
+        columns={columns}
+        tableLabel='Students table'
+      />
     </PageWrapper>
   )
 }

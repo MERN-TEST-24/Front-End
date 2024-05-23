@@ -14,8 +14,8 @@ const AuthPage: React.FC = () => {
   }
 
   const buttons = [
-    { label: 'Sign In', onClick: handleSignInClick },
-    { label: 'Sign Up', onClick: handleSignUpClick }
+    { label: 'Sign In', handleClick: handleSignInClick },
+    { label: 'Sign Up', handleClick: handleSignUpClick }
   ]
 
   return <ControlsMenu buttons={buttons} showIcon title='Welcome to App' />

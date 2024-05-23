@@ -1,10 +1,20 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
+import AddEntityForm from '../../../components/AddEntityForm/AddEntityForm'
 
 const AddGradePage = () => {
   return (
     <PageWrapper>
-      <Box>AddGradePage</Box>
+      <AddEntityForm
+        apiEndpoint='/api/grade/add'
+        entityLabel='Add Grade'
+        fields={[
+          { name: 'ticket_number', label: 'Ticket number', required: true },
+          { name: 'grade_value', label: 'Grade value', required: true },
+          { name: 'student_ID', label: 'Student ID', required: true },
+          { name: 'subject_ID', label: 'Subject ID', required: true },
+          { name: 'teacher_ID', label: 'Teacher ID', required: true }
+        ]}
+      />
     </PageWrapper>
   )
 }

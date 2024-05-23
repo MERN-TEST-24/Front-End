@@ -1,12 +1,16 @@
-import { Box } from '@mui/material'
+import AddEntityForm from '../../../components/AddEntityForm/AddEntityForm'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
 
-const AddSubjectPage = () => {
+export default function AddSubjectPage() {
   return (
     <PageWrapper>
-      <Box>AddSubjectPage</Box>
+      <AddEntityForm
+        apiEndpoint='/api/subject/add'
+        entityLabel='Add Subject'
+        fields={[
+          { name: 'subject_name', label: 'Subject Name', required: true }
+        ]}
+      />
     </PageWrapper>
   )
 }
-
-export default AddSubjectPage

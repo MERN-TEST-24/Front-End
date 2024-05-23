@@ -1,10 +1,17 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
+import AddEntityForm from '../../../components/AddEntityForm/AddEntityForm'
 
 const AddStudentPage = () => {
   return (
     <PageWrapper>
-      <Box>AddStudentPage</Box>
+      <AddEntityForm
+        apiEndpoint='/api/student/add'
+        entityLabel='Add Student'
+        fields={[
+          { name: 'lastName', label: 'Last Name', required: true },
+          { name: 'group_name', label: 'Group name', required: true }
+        ]}
+      />
     </PageWrapper>
   )
 }
