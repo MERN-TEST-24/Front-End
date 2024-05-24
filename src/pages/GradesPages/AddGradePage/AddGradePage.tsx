@@ -1,5 +1,5 @@
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
-import AddEntityForm from '../../../components/AddEntityForm/AddEntityForm'
+import AddEntityForm from '../../../components/addEntityForm/addEntityForm'
 
 const AddGradePage = () => {
   return (

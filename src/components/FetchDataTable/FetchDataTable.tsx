@@ -10,7 +10,6 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import CircularProgress from '@mui/material/CircularProgress'
 import { useHTTP } from '../../hooks/http.hook'
 import { useNavigate } from 'react-router-dom'
 
@@ -29,40 +28,29 @@ export default function FetchDataTable({
 }: FetchDataTableProps) {
   const { request } = useHTTP()
   const [data, setData] = useState<any[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData: any = await request(apiEndpoint, 'GET');
-        console.log('Response Data:', responseData);
+        const responseData: any = await request(apiEndpoint, 'GET')
+        console.log('Response Data:', responseData)
         if (Array.isArray(responseData)) {
-          setData(responseData);
+          setData(responseData)
         } else {
-          setError('Data received from the server is not in the expected format');
+          setError('Data received from the server is not in the expected format')
         }
-        setLoading(false);
       } catch (err) {
-        setError('An error occurred while fetching data');
-        setLoading(false);
+        setError('An error occurred while fetching data')
       }
-    };
+    }
 
     fetchData();
-  }, [apiEndpoint, request]);
+  }, [apiEndpoint, request])
 
   const handleRowClick = (_id: string) => {
     navigate(`${navigateParams}${_id}`)
-  }
-
-  if (loading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
-        <CircularProgress />
-      </Box>
-    );
   }
 
   if (error) {
@@ -70,7 +58,7 @@ export default function FetchDataTable({
       <Typography color="error" align="center">
         {error}
       </Typography>
-    );
+    )
   }
 
   return (

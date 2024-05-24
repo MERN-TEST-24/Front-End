@@ -1,4 +1,4 @@
-import AddEntityForm from '../../../components/AddEntityForm/AddEntityForm'
+import AddEntityForm from '../../../components/addEntityForm/addEntityForm'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
 
 export default function AddSubjectPage() {

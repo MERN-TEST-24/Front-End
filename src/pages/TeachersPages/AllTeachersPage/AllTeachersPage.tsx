@@ -1,5 +1,5 @@
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
-import FetchDataTable from '../../../components/FetchDataTable/FetchDataTable'
+import FetchDataTable from '../../../components/fetchDataTable/fetchDataTable'
 
 const AllTeachersPage = () => {
   const columns = [

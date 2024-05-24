@@ -1,13 +1,13 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
 import { useParams } from 'react-router-dom'
+import SubjectDetailsForm from '../../../components/detailsForms/subjectDetailsForm'
 
 const OneSubjectPage = () => {
   const { subjectId } = useParams()
 
   return (
     <PageWrapper>
-      <Box>OneSubjectPage - Subject ID: {subjectId}</Box>
+      <SubjectDetailsForm id={subjectId} />
     </PageWrapper>
   )
 }

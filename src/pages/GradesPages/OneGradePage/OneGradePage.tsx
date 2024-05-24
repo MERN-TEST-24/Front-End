@@ -1,13 +1,13 @@
-import { Box } from '@mui/material'
 import PageWrapper from '../../../components/pageWrapper/PageWrapper'
 import { useParams } from 'react-router-dom'
+import GradeDetailsForm from '../../../components/detailsForms/gradeDetailsForm'
 
 const OneGradePage = () => {
   const { gradeId } = useParams()
 
   return (
     <PageWrapper>
-      <Box>OneGradePage - Grade ID: {gradeId}</Box>
+      <GradeDetailsForm id={gradeId} />
     </PageWrapper>
   )
 }
