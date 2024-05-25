@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import Button from '@mui/material/Button'
 import { details } from './details.styles'
+import SubjectAutocomplete from '../autocomplets/SubjectAutocomplete'
+import StudentAutocomplete from '../autocomplets/StudentAutocomplete'
+import TeacherAutocomplete from '../autocomplets/TeacherAutocomplete'
 
 interface GradeDetailsProps {
   id: string | undefined
@@ -102,6 +105,17 @@ export default function GradeDetailsForm({ id }: GradeDetailsProps) {
   if (!gradeData) {
     return <Typography>No data found for the grade with ID: {id}</Typography>
   }
+  const onSubjectSelect = (subject: any) => {
+    setSubjectID(subject ? subject._id : '')
+  }
+  
+  const onStudentSelect = (student: any) => {
+    setStudentID(student ? student._id : '')
+  }
+  const onTeacherSelect = (teacher: any) => {
+    setTeacherID(teacher ? teacher._id : '')
+  }
+  
 
   return (
     <Container style={details.container}>
@@ -131,6 +145,7 @@ export default function GradeDetailsForm({ id }: GradeDetailsProps) {
               value={gradeValue}
               onChange={(e) => setGradeValue(Number(e.target.value))}
             />
+              <StudentAutocomplete onStudentSelect={onStudentSelect}/>
             <TextField
               fullWidth
               margin="normal"
@@ -140,6 +155,7 @@ export default function GradeDetailsForm({ id }: GradeDetailsProps) {
               value={studentID}
               onChange={(e) => setStudentID(e.target.value)}
             />
+              <SubjectAutocomplete onSubjectSelect={onSubjectSelect} />
             <TextField
               fullWidth
               margin="normal"
@@ -149,6 +165,7 @@ export default function GradeDetailsForm({ id }: GradeDetailsProps) {
               value={subjectID}
               onChange={(e) => setSubjectID(e.target.value)}
             />
+            <TeacherAutocomplete onTeacherSelect={onTeacherSelect}/>
             <TextField
               fullWidth
               margin="normal"
